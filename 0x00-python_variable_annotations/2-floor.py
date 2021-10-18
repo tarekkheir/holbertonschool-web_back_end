@@ -5,4 +5,5 @@ Type-annoted functions module
 
 
 def floor(n: float) -> float:
+    """return argument with int type"""
     return int(n)
