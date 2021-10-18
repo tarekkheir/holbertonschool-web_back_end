@@ -4,5 +4,5 @@ Type-annoted functions module
 """
 
 
-def add(a: float, b: float) -> float:
-    return (a + b)
+def floor(n: float) -> float:
+    return int(n)

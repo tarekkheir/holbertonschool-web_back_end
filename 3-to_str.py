@@ -4,5 +4,5 @@ Type-annoted functions module
 """
 
 
-def add(a: float, b: float) -> float:
-    return (a + b)
+def to_str(n: float) -> str:
+    return str(n)
