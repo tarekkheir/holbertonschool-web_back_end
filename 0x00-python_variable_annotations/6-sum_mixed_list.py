@@ -7,7 +7,7 @@ from typing import Union
 
 
 def sum_mixed_list(mxd_list: Union[int, float]) -> float:
-
+    """return sum of mixed list argument"""
     s: float = 0
     for i in mxd_list:
         s = s + i
