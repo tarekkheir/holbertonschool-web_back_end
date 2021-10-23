@@ -15,8 +15,7 @@ class LIFOCache(BaseCaching):
     def put(self, key, item):
         """Add item in the cache"""
         if key and item:
-            if len(self.cache_data) >= BaseCaching.MAX_ITEMS
-            and key not in self.cache_data.keys():
+            if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                 k = self.history[-1]
                 self.cache_data.pop(k)
                 self.cache_data.update({key: item})
