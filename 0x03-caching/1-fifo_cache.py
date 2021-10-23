@@ -12,6 +12,7 @@ class FIFOCache(BaseCaching):
         super().__init__()
 
     def put(self, key, item):
+        """Add item in the cache"""
         if key and item:
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                 k = list(self.cache_data.keys())[0]
@@ -22,7 +23,8 @@ class FIFOCache(BaseCaching):
                 self.cache_data.update({key: item})
 
     def get(self, key):
-        if key and key in self.cache_data:
+        """Get item from the cache"""
+        if key and key in self.cache_data.keys():
             return self.cache_data[key]
         else:
             return None

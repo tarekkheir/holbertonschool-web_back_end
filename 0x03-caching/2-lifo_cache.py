@@ -3,7 +3,6 @@
 
 
 from base_caching import BaseCaching
-from collections import OrderedDict
 
 
 class LIFOCache(BaseCaching):
@@ -14,6 +13,7 @@ class LIFOCache(BaseCaching):
         self.last_key = []
 
     def put(self, key, item):
+        """Add item in the cache"""
         if key and item:
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS and key not in self.cache_data.keys():
                 if self.last_key:
@@ -32,7 +32,8 @@ class LIFOCache(BaseCaching):
                 self.last_key.append(key)
 
     def get(self, key):
-        if key and key in self.cache_data:
+        """Get item from the cache"""
+        if key and key in self.cache_data.keys():
             return self.cache_data[key]
         else:
             return None
