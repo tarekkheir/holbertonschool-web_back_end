@@ -3,7 +3,6 @@
 
 
 from base_caching import BaseCaching
-from collections import Counter
 
 
 class LFUCache(BaseCaching):
@@ -17,6 +16,7 @@ class LFUCache(BaseCaching):
         """Add item in the cache"""
         if key and item:
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
+
                 if self.history and key in self.history.keys():
                     self.history[key] += 1
                 else:
@@ -28,6 +28,7 @@ class LFUCache(BaseCaching):
                             if self.history[k] == i:
                                 s[k] = self.history[k]
                                 break
+
                     k = list(s.keys())[0]
                     self.cache_data.pop(k)
                     self.history.pop(k)
@@ -46,8 +47,10 @@ class LFUCache(BaseCaching):
     def get(self, key):
         """Get item from the cache"""
         if key and key in self.cache_data.keys():
+
             if self.history and key in self.history.keys():
                 self.history[key] += 1
+
             return self.cache_data[key]
         else:
             return None
