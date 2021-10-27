@@ -26,11 +26,14 @@ class Server:
         return self.__dataset
 
     def index_range(self, page: int, page_size: int) -> Tuple[int, int]:
+        """function return a tuple of size two
+        containing a start index and an end index """
         total_size = page * page_size
         start = (page - 1) * page_size
         return (start, total_size)
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """Get content of specifics pages"""
         assert isinstance(page, int)
         assert isinstance(page_size, int)
         assert page > 0 and page_size > 0
