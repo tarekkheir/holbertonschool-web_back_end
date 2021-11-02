@@ -5,6 +5,7 @@ import re
 import logging
 import os
 import mysql.connector
+from typing import List
 
 
 PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
@@ -18,7 +19,7 @@ class RedactingFormatter(logging.Formatter):
     FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)-15s: %(message)s"
     SEPARATOR = ";"
 
-    def __init__(self, fields):
+    def __init__(self, fields: List[str]):
         super(RedactingFormatter, self).__init__(self.FORMAT)
         self.fields = fields
 
@@ -28,7 +29,7 @@ class RedactingFormatter(logging.Formatter):
                             super().format(record), self.SEPARATOR)
 
 
-def filter_datum(fields, redaction, message, separator):
+def filter_datum(fields: List[str], redaction: str, message: str, separator: str) -> str:
     """returns the log message obfuscated"""
     for f in fields:
         message = re.sub(f'{f}=(.*?){separator}',
@@ -37,7 +38,7 @@ def filter_datum(fields, redaction, message, separator):
     return message
 
 
-def get_logger():
+def get_logger() -> logging.Logger:
     """function that takes no arguments and returns a logging.Logger object."""
     logger = logging.getLogger('user_data')
     logger.setLevel(level=logging.INFO)
@@ -50,7 +51,7 @@ def get_logger():
     return logger
 
 
-def get_db():
+def get_db() -> mysql.connector.connection.MySQLConnection:
     """function that returns a connector to the database"""
     host = os.environ["PERSONAL_DATA_DB_HOST"]
     user = os.environ["PERSONAL_DATA_DB_USERNAME"]
