@@ -10,7 +10,7 @@ class Auth():
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """prototype"""
-        if path:
+        if path and excluded_paths:
             if not path.endswith('/'):
                 path += '/'
 
