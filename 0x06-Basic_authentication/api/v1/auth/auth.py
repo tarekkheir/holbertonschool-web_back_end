@@ -10,7 +10,16 @@ class Auth():
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """prototype"""
-        return False
+        if path:
+            if not path.endswith('/'):
+                path += '/'
+
+            for e in excluded_paths:
+                if not e.endswith('/'):
+                    e += '/'
+                if path == e:
+                    return False
+        return True
 
     def authorization_header(self, request=None) -> str:
         """prototype"""
