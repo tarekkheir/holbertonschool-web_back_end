@@ -5,6 +5,7 @@ from api.v1.auth.auth import Auth
 import base64
 from typing import TypeVar
 from models.user import User
+from models.base import DATA
 
 
 class BasicAuth(Auth):
@@ -60,11 +61,11 @@ class BasicAuth(Auth):
             -> TypeVar('User'):
         """returns the User instance based on his email and password"""
         if isinstance(user_email, str) and isinstance(user_pwd, str):
-
-            users = User.search({'email': user_email})
-            if users:
-                for user in users:
-                    if user.email == user_email and\
-                            user.is_valid_password(user_pwd):
-                        return user
+            if DATA.get('User'):
+                users = User.search({'email': user_email})
+                if users:
+                    for user in users:
+                        if user.email == user_email and\
+                                user.is_valid_password(user_pwd):
+                            return user
         return None
