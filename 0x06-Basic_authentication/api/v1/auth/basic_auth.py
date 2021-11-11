@@ -50,7 +50,7 @@ class BasicAuth(Auth):
 
         if decoded_base64_authorization_header\
                 and isinstance(decoded_base64_authorization_header, str):
-            decoded = decoded_base64_authorization_header.split(':')
+            decoded = decoded_base64_authorization_header.split(':', 1)
 
             if len(decoded) == 2:
                 return tuple(decoded)
