@@ -36,9 +36,9 @@ class DB:
 
     def find_user_by(self, **args) -> User:
         """find user by field in users tables"""
-        user = self._session.query(User).filter_by(**args).one()
+        try:
+            user = self._session.query(User).filter_by(**args).one()
+            return user
 
-        if user is None:
+        except NoResultFound:
             raise NoResultFound
-
-        return user
