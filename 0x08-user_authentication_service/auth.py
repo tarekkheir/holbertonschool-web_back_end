@@ -55,5 +55,5 @@ class Auth:
             session_id = str(_generate_uuid())
             self._db.update_user(user.id, session_id=session_id)
             return session_id
-        except:
+        except Exception:
             return None
