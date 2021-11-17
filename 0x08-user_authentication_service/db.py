@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """ DB module. """
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.orm.session import Session
 from typing import Union
+
+from sqlalchemy.sql.functions import user
 
 from user import Base, User
 
@@ -42,3 +45,18 @@ class DB:
 
         except NoResultFound:
             raise NoResultFound
+
+    def update_user(self, user_id: int, **args) -> None:
+        """update data with user id"""
+        try:
+            user = self.find_user_by(id=user_id)
+
+            for key, value in args.items():
+                if hasattr(user, key):
+                    setattr(user, key, value)
+
+            self._session.commit()
+            return None
+
+        except ValueError:
+            raise ValueError
