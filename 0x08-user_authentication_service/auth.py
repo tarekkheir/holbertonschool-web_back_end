@@ -2,6 +2,7 @@
 """User authenfication service module"""
 
 
+from flask.globals import session
 from db import DB
 from user import User
 import bcrypt
@@ -47,3 +48,12 @@ class Auth:
 
         except Exception:
             return False
+
+    def create_session(self, email: str) -> str:
+        try:
+            user = self._db.find_user_by(email=email)
+            session_id = str(_generate_uuid())
+            self._db.update_user(user.id, session_id=session_id)
+            return session_id
+        except:
+            return None
