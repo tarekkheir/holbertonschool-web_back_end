@@ -3,9 +3,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.exc import NoResultFound
-from typing import List
 from sqlalchemy.orm.session import Session
 from typing import Union
+from typing import List
 
 from user import Base, User
 
@@ -37,10 +37,9 @@ class DB:
 
     def find_user_by(self, **args: List[str]) -> User:
         """find user by field in users tables"""
-        try:
-            user = self._session.query(User).filter_by(**args).one()
+        user = self._session.query(User).filter_by(**args).one()
 
-        except NoResultFound:
+        if user is None:
             raise NoResultFound
 
         return user
