@@ -2,6 +2,7 @@
 """User authenfication service module"""
 
 
+from typing import Union
 from flask.globals import session
 from db import DB
 from user import User
@@ -57,3 +58,13 @@ class Auth:
             return session_id
         except Exception:
             return None
+
+    def get_user_from_session_id(self, session_id: str) -> Union[User, None]:
+        """get user by session id"""
+        if session_id:
+            try:
+                user = self._db.find_user_by(session_id=session_id)
+                return user
+            except:
+                return None
+        return None
