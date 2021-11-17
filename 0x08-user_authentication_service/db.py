@@ -48,15 +48,12 @@ class DB:
 
     def update_user(self, user_id: int, **args) -> None:
         """update data with user id"""
-        try:
-            user = self.find_user_by(id=user_id)
+        user = self.find_user_by(id=user_id)
 
-            for key, value in args.items():
-                if hasattr(user, key):
-                    setattr(user, key, value)
+        for key, value in args.items():
+            if hasattr(user, key) is None:
+                raise ValueError
+            setattr(user, key, value)
 
-            self._session.commit()
-            return None
-
-        except ValueError:
-            raise ValueError
+        self._session.commit()
+        return None
