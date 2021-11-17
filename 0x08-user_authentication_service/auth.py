@@ -3,7 +3,6 @@
 
 
 from typing import Union
-from flask.globals import session
 from db import DB
 from user import User
 import bcrypt
