@@ -5,9 +5,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.orm.session import Session
-from typing import Union
-
-from sqlalchemy.sql.functions import user
 
 from user import Base, User
 
@@ -46,10 +43,10 @@ class DB:
         except NoResultFound:
             raise NoResultFound
 
-    def update_user(self, user_id: int, **kwargs) -> None:
+    def update_user(self, user_id: int, **args) -> None:
         """ Update user values """
         user: User = self.find_user_by(id=user_id)
-        for key, value in kwargs.items():
+        for key, value in args.items():
             if not hasattr(user, key):
                 raise ValueError
             setattr(user, key, value)
