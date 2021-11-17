@@ -41,7 +41,7 @@ class DB:
         return self.__session
 
     def add_user(self, email: str, hashed_password: str) -> User:
-        """return a user object"""
+        """add user to the database and return a user object"""
         user = User(email=email, hashed_password=hashed_password)
 
         self._session.add(user)
