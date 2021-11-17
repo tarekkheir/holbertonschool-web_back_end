@@ -4,9 +4,9 @@
 
 from flask import Flask
 from flask.globals import request
-from flask.helpers import make_response
+from flask.helpers import make_response, url_for
 from flask.json import jsonify
-from flask import abort
+from flask import abort, redirect
 from auth import Auth
 
 
@@ -45,6 +45,53 @@ def login():
     res = make_response({"email": email, "message": "logged in"})
     res.set_cookie("session_id", session_id)
     return res
+
+
+@app.route('/sessions', methods=['DELETE'])
+def logout():
+    """ DELETE /sessions """
+    user = AUTH.get_user_from_session_id(request.cookies["session_id"])
+    if user:
+        AUTH.destroy_session(user.id)
+        return redirect(url_for('welcome'))
+    else:
+        abort(403)
+
+
+@app.route('/profile', methods=['GET'])
+def profile():
+    """ GET /profile """
+    user = AUTH.get_user_from_session_id(request.cookies["session_id"])
+    if user:
+        return jsonify({"email": user.email}), 200
+    else:
+        abort(403)
+
+
+@app.route('/reset_password', methods=['PUT'])
+def update_password():
+    """ POST /reset_password """
+    email = request.form['email']
+    reset_token = request.form['reset_token']
+    new_password = request.form['new_password']
+    try:
+        AUTH.update_password(reset_token, new_password)
+        return jsonify({"email": email, "message": "Password updated"}), 200
+    except ValueError:
+        abort(403)
+
+
+@app.route('/reset_password', methods=['PUT'])
+def update_password():
+    """ PUT /reset_password """
+    email = request.form['email']
+    reset_token = request.form['reset_token']
+    new_password = request.form['new_password']
+    try:
+        AUTH.update_password(reset_token, new_password)
+        return jsonify({"email": email, "message": "Password updated"}), 200
+    except ValueError:
+        abort(403)
 
 
 if __name__ == "__main__":
