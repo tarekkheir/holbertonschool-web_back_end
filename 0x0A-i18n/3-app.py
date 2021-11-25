@@ -23,7 +23,7 @@ app.config.from_object(Config)
 @app.route('/', methods=['GET'], strict_slashes=False)
 def hello_world():
     """Get method /"""
-    return render_template('2-index.html')
+    return render_template('3-index.html')
 
 
 @babel.localeselector
