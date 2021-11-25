@@ -17,7 +17,7 @@ class Config(object):
     Babel.default_timezone = "UTC"
 
 
-app.config.from_object('Config')
+app.config.from_object(Config)
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
