@@ -30,7 +30,7 @@ def hello_world():
 def get_locale():
     """determine best match with our supported language"""
     language = request.args.get('locale')
-    if language in app.config['LANGUAGES']:
+    if language and language in app.config['LANGUAGES']:
         return language
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
