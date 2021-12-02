@@ -2,7 +2,7 @@
 """Re1dis with Python module"""
 
 
-from typing import Union
+from typing import Callable, Optional, Union
 import redis
 import uuid
 
@@ -20,3 +20,12 @@ class Cache():
         key = str(uuid.uuid4())
         self._redis.set(key, data)
         return key
+
+    def get(self, key: str, fn: Optional[Callable] = None) -> str:
+        """Return data in the desired format"""
+        if self._redis.exists(key):
+            if fn:
+                return fn(self._redis.get(key))
+            else:
+                return self._redis.get(key)
+        return None
