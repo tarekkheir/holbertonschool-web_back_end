@@ -34,6 +34,20 @@ def call_history(method: Callable) -> Callable:
     return wrapper
 
 
+def replay(method: Callable) -> str:
+    """display history of calls"""
+    inputs = f'{method.__qualname__}:inputs'
+    outputs = f'{method.__qualname__}:outputs'
+
+    r = redis.Redis()
+    inputs_list = r.lrange(inputs, 0, -1)
+    outputs_lists = r.lrange(outputs, 0, -1)
+    mix = zip(inputs_list, outputs_lists)
+
+    for k1, k2 in mix:
+        print(f"{method.__qualname__}(*{k1.decode('utf-8')}) -> {k2.decode('utf-8')}")
+
+
 class Cache():
     """Cache class"""
 
