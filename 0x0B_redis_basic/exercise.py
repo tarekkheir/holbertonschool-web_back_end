@@ -42,8 +42,10 @@ def replay(method: Callable) -> str:
     r = redis.Redis()
     inputs_list = r.lrange(inputs, 0, -1)
     outputs_lists = r.lrange(outputs, 0, -1)
+    l = r.llen(outputs)
     mix = zip(inputs_list, outputs_lists)
 
+    print(f"{method.__qualname__} was called {l} times:")
     for k1, k2 in mix:
         print(f"{method.__qualname__}(*{k1.decode('utf-8')}) -> {k2.decode('utf-8')}")
 
