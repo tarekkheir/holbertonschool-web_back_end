@@ -8,7 +8,7 @@ import redis
 import uuid
 
 
-def counts_calls(method: Callable) -> Callable:
+def count_calls(method: Callable) -> Callable:
     """count how many time Cache class are called"""
     @wraps(method)
     def wrapper(self, *args) -> bytes:
@@ -26,7 +26,7 @@ class Cache():
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    @counts_calls
+    @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """Generate uuid key and store data in Redis DB"""
         key = str(uuid.uuid4())
