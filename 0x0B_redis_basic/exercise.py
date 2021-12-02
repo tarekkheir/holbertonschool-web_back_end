@@ -29,3 +29,11 @@ class Cache():
             else:
                 return self._redis.get(key)
         return None
+
+    def get_str(self, key: str) -> str:
+        """return data in str format"""
+        return self.get(key, str)
+
+    def get_int(self, key: int) -> int:
+        """return data in int format"""
+        return self.get(key, int)
