@@ -11,7 +11,7 @@ import uuid
 def counts_calls(method: Callable) -> Callable:
     """count how many time Cache class are called"""
     @wraps(method)
-    def wrapper(self, *args):
+    def wrapper(self, *args) -> bytes:
         """wrapper"""
         self._redis.incr(method.__qualname__)
         return method(self, *args)
