@@ -6,7 +6,7 @@ export default function cleanSet(set, startString) {
 
   if (startString) {
     for (const v of values) {
-      if (v.startsWith(startString)) {
+      if (typeof str === 'string' && v.startsWith(startString)) {
         result.push(v.replace(startString, ''));
       }
     }
