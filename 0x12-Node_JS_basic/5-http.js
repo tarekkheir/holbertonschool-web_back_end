@@ -5,7 +5,6 @@ const port = 1245;
 const hostname = 'localhost';
 
 const app = http.createServer(async (req, res) => {
-  res.setHeader('Content-type', 'text/plain');
   if (req.url === '/' || req.url === '') {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
