@@ -20,8 +20,7 @@ const app = http.createServer(async (req, res) => {
       }).catch((e) => res.end(e.message));
       break;
   }
-},
-);
+});
 
 app.listen(port, hostname);
 
