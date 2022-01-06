@@ -7,8 +7,8 @@ const hostname = 'localhost';
 
 app.listen(port, hostname);
 
-app.use('/', index)
-app.use('/students', index)
-app.use('/students/:major', index)
+app.use('/', index);
+app.use('/students', index);
+app.use('/students/:major', index);
 
 export default app;

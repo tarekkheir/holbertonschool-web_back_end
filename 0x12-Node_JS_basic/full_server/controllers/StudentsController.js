@@ -14,16 +14,17 @@ class StudentsController {
   }
 
   static getAllStudentsByMajor(request, response) {
-    const major = request.params.major;
+    const { major } = request.params;
 
     if (major !== 'SWE' && major !== 'CS') {
       response.statusCode = 500;
-      return response.end('Major must be CS or SWE');
+      response.end('Major must be CS or SWE');
+      return;
     }
 
     readDatabase(process.argv[2]).then((data) => {
       response.statusCode = 200;
-      response.write(`List: ${data[major].join(', ')}`)
+      response.write(`List: ${data[major].join(', ')}`);
     }).catch((e) => {
       response.write(e.message);
     }).finally(() => response.end());
