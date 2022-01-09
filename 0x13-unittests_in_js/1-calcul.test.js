@@ -76,6 +76,9 @@ describe('calculateNumber', () => {
     it('DIVIDE: 0 / 2', () => {
       assert.equal(calculateNumber('DIVIDE', 0, 2), 0);
     });
+    it('DIVIDE: 3.6 / -2', () => {
+      assert.equal(calculateNumber('DIVIDE', 3.6, -2), -2);
+    });
     it('a not a number', () => {
       assert.throws(() => calculateNumber('SUBTRACT', 'Hello', 3), TypeError);
     });
