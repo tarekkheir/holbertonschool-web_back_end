@@ -37,10 +37,10 @@ describe('calculateNumber', () => {
       assert.equal(calculateNumber('SUM', -1.7, 3.7), 2)
     });
     it('a not a number', () => {
-      assert.throws(() => calculateNumber('Hello', 3), TypeError);
+      assert.throws(() => calculateNumber('SUM', Hello', 3), TypeError);
     });
     it('b not a number', () => {
-      assert.throws(() => calculateNumber(3, 'Hello'), TypeError);
+      assert.throws(() => calculateNumber('SUM', 3, 'Hello'), TypeError);
     });
   });
 });
