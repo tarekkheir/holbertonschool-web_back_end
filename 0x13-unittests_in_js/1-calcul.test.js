@@ -3,38 +3,35 @@ const assert = require('assert');
 
 describe('calculateNumber', () => {
   describe('SUM', () => {
-    it('calculate 1 + 3', () => {
-      assert.equal(calculateNumber('SUM', 1, 3), 4)
+    it('Integers: 1 and 3', () => {
+      assert.equal(calculateNumber('SUM', 1, 3), 4);
     });
-    it('calculate 1 + 3.7', () => {
-      assert.equal(calculateNumber('SUM', 1, 3.7), 5)
+    it('int and round down: 1 and 3.2', () => {
+      assert.equal(calculateNumber('SUM', 1, 3.2), 4);
     });
-    it('calculate 1.2 + 3.7', () => {
-      assert.equal(calculateNumber('SUM', 1.2, 3.7), 5)
+    it('int and round up: 1 and 3.7', () => {
+      assert.equal(calculateNumber('SUM', 1, 3.7), 5);
     });
-    it('calculate 1.5 + 3.7', () => {
-      assert.equal(calculateNumber('SUM', 1.5, 3.7), 6)
+    it('round down and int: 1.3 and 3', () => {
+      assert.equal(calculateNumber('SUM', 1.3, 3), 4);
     });
-    it('calculate 1.7 + 3.7', () => {
-      assert.equal(calculateNumber('SUM', 1.7, 3.7), 6)
+    it('round up and int: 1.6 and 3', () => {
+      assert.equal(calculateNumber('SUM', 1.6, 3), 5);
     });
-    it('calculate 0.9 + 3.7', () => {
-      assert.equal(calculateNumber('SUM', 0.9, 3.7), 5)
+    it('round down and round up: 1.2 and 3.7', () => {
+      assert.equal(calculateNumber('SUM', 1.2, 3.7), 5);
     });
-    it('calculate 0.2 + 3.7', () => {
-      assert.equal(calculateNumber('SUM', 0.2, 3.7), 4)
+    it('round up and round up: 1.5 and 3.7', () => {
+      assert.equal(calculateNumber('SUM', 1.5, 3.7), 6);
     });
-    it('calculate -1 + 3.7', () => {
-      assert.equal(calculateNumber('SUM', -1, 3.7), 3)
+    it('round up and round down: 1.7 and 3.2', () => {
+      assert.equal(calculateNumber('SUM', 1.7, 3.2), 5);
     });
-    it('calculate -1.2 + 3.7', () => {
-      assert.equal(calculateNumber('SUM', -1.2, 3.7), 3)
+    it('neg round down and pos round down: -1.7 and 3.2', () => {
+      assert.equal(calculateNumber('SUM', -1.7, 3.2), 1);
     });
-    it('calculate -1.5 + 3.7', () => {
-      assert.equal(calculateNumber('SUM', -1.5, 3.7), 3)
-    });
-    it('calculate -1.7 + 3.7', () => {
-      assert.equal(calculateNumber('SUM', -1.7, 3.7), 2)
+    it('neg round up and pos round down: -1.2 and 3.2', () => {
+      assert.equal(calculateNumber('SUM', -1.2, 3.2), 2);
     });
     it('a not a number', () => {
       assert.throws(() => calculateNumber('SUM', 'Hello', 3), TypeError);
