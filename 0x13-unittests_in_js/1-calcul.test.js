@@ -46,23 +46,38 @@ describe('calculateNumber', () => {
 });
 
 describe('SUBTRACT', () => {
-  it('SUBTRACT: 1 - 4', () => {
-    assert.equal(calculateNumber('SUBTRACT', 1, 4), -3)
+  it('Pos ints pos result: 3 and 1', () => {
+    assert.equal(calculateNumber('SUBTRACT', 3, 1), 2);
   });
-  it('SUBTRACT: 1.4 - 4', () => {
-    assert.equal(calculateNumber('SUBTRACT', 1.4, 4), -3)
+  it('Pos ints neg result: 1 and 3', () => {
+    assert.equal(calculateNumber('SUBTRACT', 1, 3), -2);
   });
-  it('SUBTRACT: 1.4 - 4.5', () => {
-    assert.equal(calculateNumber('SUBTRACT', 1.4, 4.5), -4)
+  it('int and round down: 3 and 1.2', () => {
+    assert.equal(calculateNumber('SUBTRACT', 3, 1.2), 2);
   });
-  it('SUBTRACT: 1.7 - 4.5', () => {
-    assert.equal(calculateNumber('SUBTRACT', 1.4, 4.5), -4)
+  it('int and round up: 5 and 3.7', () => {
+    assert.equal(calculateNumber('SUBTRACT', 5, 3.7), 1);
   });
-  it('SUBTRACT: -1.4 - 4.5', () => {
-    assert.equal(calculateNumber('SUBTRACT', -1.4, 4.5), -6)
+  it('round down and int: 1.3 and 3', () => {
+    assert.equal(calculateNumber('SUBTRACT', 1.3, 3), -2);
   });
-  it('SUBTRACT: 0 - 4.5', () => {
-    assert.equal(calculateNumber('SUBTRACT', 0, 4.5), -5)
+  it('round up and int: 5.6 and 3', () => {
+    assert.equal(calculateNumber('SUBTRACT', 5.6, 3), 3);
+  });
+  it('round down and round up: 1.2 and 3.7', () => {
+    assert.equal(calculateNumber('SUBTRACT', 1.2, 3.7), -3);
+  });
+  it('round up and round up: 1.5 and 3.7', () => {
+    assert.equal(calculateNumber('SUBTRACT', 1.5, 3.7), -2);
+  });
+  it('round up and round down: 1.7 and 3.2', () => {
+    assert.equal(calculateNumber('SUBTRACT', 1.7, 3.2), -1);
+  });
+  it('neg round down and pos round down: -1.7 and 3.2', () => {
+    assert.equal(calculateNumber('SUBTRACT', -1.7, 3.2), -5);
+  });
+  it('neg round up and pos round down: -1.2 and 3.2', () => {
+    assert.equal(calculateNumber('SUBTRACT', -1.2, 3.2), -4);
   });
   it('a not a number', () => {
     assert.throws(() => calculateNumber('SUBTRACT', 'Hello', 3), TypeError);
