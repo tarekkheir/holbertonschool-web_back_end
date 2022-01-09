@@ -52,6 +52,9 @@ describe('calculateNumber', () => {
   });
 
   describe('DIVIDE', () => {
+    it('DIVIDE: 4 / 2', () => {
+      assert.equal(calculateNumber('DIVIDE', 4, 2), 2);
+    });
     it('DIVIDE: 1.4 / 4.5', () => {
       assert.equal(calculateNumber('DIVIDE', 1.4, 4.5), 0.2);
     });
@@ -61,11 +64,17 @@ describe('calculateNumber', () => {
     it('DIVIDE: 3.6 / 2', () => {
       assert.equal(calculateNumber('DIVIDE', 3.6, 2), 2);
     });
+    it('DIVIDE: 3.2 / 2', () => {
+      assert.equal(calculateNumber('DIVIDE', 3.2, 2), 1.5);
+    });
     it('DIVIDE: -3.6 / 2', () => {
       assert.equal(calculateNumber('DIVIDE', -3.6, 2), -2);
     });
     it('DIVIDE: 3.6 / 1.7', () => {
       assert.equal(calculateNumber('DIVIDE', 3.6, 1.7), 2);
+    });
+    it('DIVIDE: 3.6 / 1.2', () => {
+      assert.equal(calculateNumber('DIVIDE', 3.6, 1.2), 4);
     });
     it('DIVIDE: -3.6 / -2', () => {
       assert.equal(calculateNumber('DIVIDE', -3.6, -2), 2);
