@@ -4,17 +4,26 @@ const expect = chai.expect;
 
 describe('calculateNumber', () => {
   describe('SUM', () => {
-    it('SUM: 1.4 + 4.5', () => {
-      expect(calculateNumber('SUM', 1.4, 4.5)).to.equal(6);
+    it('SUM: 1 + 3', () => {
+      expect(calculateNumber('SUM', 1, 3)).to.equal(4);
     });
-    it('SUM: 1.7 + 4.5', () => {
-      expect(calculateNumber('SUM', 1.7, 4.5)).to.equal(7);
+    it('SUM: 1 + 3.2', () => {
+      expect(calculateNumber('SUM', 1, 3.2)).to.equal(4);
     });
-    it('SUM: -1.4 + 4.5', () => {
-      expect(calculateNumber('SUM', -1.4, 4.5)).to.equal(4);
+    it('SUM: 1 + 3.7', () => {
+      expect(calculateNumber('SUM', 1, 3.7)).to.equal(5);
     });
-    it('SUM: 0 + 4.5', () => {
-      expect(calculateNumber('SUM', 0, 4.5)).to.equal(5);
+    it('SUM: 1.3 + 3', () => {
+      expect(calculateNumber('SUM', 1.3, 3)).to.equal(4);
+    });
+    it('SUM: 1.6 + 3', () => {
+      expect(calculateNumber('SUM', 1.6, 3)).to.equal(5);
+    });
+    it('SUM: -1.7 + 3.2', () => {
+      expect(calculateNumber('SUM', -1.7, 3.2)).to.equal(1);
+    });
+    it('SUM: -1.2 + 3.2', () => {
+      expect(calculateNumber('SUM', -1.2, 3.2)).to.equal(2);
     });
     it('a not a number', () => {
       expect(() => calculateNumber('SUM', 'Hello', 3)).to.throw(TypeError);
