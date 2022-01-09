@@ -9,7 +9,8 @@ describe('sendPaymentRequestToApi', () => {
 
   it('check if math used for both functions are the same', () => {
     sendPaymentRequestToApi(100, 20);
-    expect(spy.calledOnceWith('SUM', 100, 20)).to.be.true;
+    expect(spy.calledOnce).to.be.true;
+    expect(spy.calledWith('SUM', 100, 20)).to.be.true;
     spy.restore();
   });
 });
