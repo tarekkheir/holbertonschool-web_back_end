@@ -80,10 +80,10 @@ describe('calculateNumber', () => {
       assert.equal(calculateNumber('DIVIDE', -4, -2.2), 2);
     });
     it('a not a number', () => {
-      assert.throws(() => calculateNumber('SUBTRACT', 'Hello', 3), TypeError);
+      assert.throws(() => calculateNumber('DIVIDE', 'Hello', 3), TypeError);
     });
     it('b not a number', () => {
-      assert.throws(() => calculateNumber('SUBTRACT', 3, 'Hello'), TypeError);
+      assert.throws(() => calculateNumber('DIVIDE', 3, 'Hello'), TypeError);
     });
   });
 });
