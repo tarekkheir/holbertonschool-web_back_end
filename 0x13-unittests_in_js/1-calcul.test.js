@@ -52,41 +52,32 @@ describe('calculateNumber', () => {
   });
 
   describe('DIVIDE', () => {
-    it('DIVIDE: 4 / 2', () => {
-      assert.equal(calculateNumber('DIVIDE', 4, 2), 2);
-    });
-    it('DIVIDE: 1.4 / 4.5', () => {
-      assert.equal(calculateNumber('DIVIDE', 1.4, 4.5), 0.2);
-    });
     it('DIVIDE: 1.4 / 0', () => {
       assert.equal(calculateNumber('DIVIDE', 1.4, 0), 'Error');
     });
-    it('DIVIDE: 3.6 / 2', () => {
-      assert.equal(calculateNumber('DIVIDE', 3.6, 2), 2);
+    it('DIVIDE: 4 / 2', () => {
+      assert.equal(calculateNumber('DIVIDE', 4, 2), 2);
     });
-    it('DIVIDE: 3.2 / 2', () => {
-      assert.equal(calculateNumber('DIVIDE', 3.2, 2), 1.5);
+    it('DIVIDE: 4 / 2.2', () => {
+      assert.equal(calculateNumber('DIVIDE', 4, 2.2), 2);
     });
-    it('DIVIDE: -3.6 / 2', () => {
-      assert.equal(calculateNumber('DIVIDE', -3.6, 2), -2);
+    it('DIVIDE: 3 / 2.7', () => {
+      assert.equal(calculateNumber('DIVIDE', 3, 2.7), 1);
     });
-    it('DIVIDE: 3.6 / 1.7', () => {
-      assert.equal(calculateNumber('DIVIDE', 3.6, 1.7), 2);
+    it('DIVIDE: 4.2 / 2', () => {
+      assert.equal(calculateNumber('DIVIDE', 4.2, 2), 2);
     });
-    it('DIVIDE: 3.6 / 1.2', () => {
-      assert.equal(calculateNumber('DIVIDE', 3.6, 1.2), 4);
+    it('DIVIDE: 2.7 / 3', () => {
+      assert.equal(calculateNumber('DIVIDE', 2.7, 3), 1);
     });
-    it('DIVIDE: -3.6 / -2', () => {
-      assert.equal(calculateNumber('DIVIDE', -3.6, -2), 2);
+    it('DIVIDE: -3.7 / 2', () => {
+      assert.equal(calculateNumber('DIVIDE', -3.7, 2), -2);
     });
-    it('DIVIDE: -3.6 / -1.2', () => {
-      assert.equal(calculateNumber('DIVIDE', -3.6, -1.2), 4);
+    it('DIVIDE: 4 / -2.2', () => {
+      assert.equal(calculateNumber('DIVIDE', 4, -2.2), -2);
     });
-    it('DIVIDE: 0 / 2', () => {
-      assert.equal(calculateNumber('DIVIDE', 0, 2), 0);
-    });
-    it('DIVIDE: 3.6 / -2', () => {
-      assert.equal(calculateNumber('DIVIDE', 3.6, -2), -2);
+    it('DIVIDE: -4 / -2.2', () => {
+      assert.equal(calculateNumber('DIVIDE', -4, -2.2), 2);
     });
     it('a not a number', () => {
       assert.throws(() => calculateNumber('SUBTRACT', 'Hello', 3), TypeError);
@@ -95,5 +86,4 @@ describe('calculateNumber', () => {
       assert.throws(() => calculateNumber('SUBTRACT', 3, 'Hello'), TypeError);
     });
   });
-
 });
