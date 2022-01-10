@@ -13,5 +13,7 @@ describe('sendPaymentRequestToApi', () => {
     expect(stub.calledWith('SUM', 100, 20)).to.be.true;
     expect(stub.alwaysReturned(10)).to.be.true;
     expect(spy.calledWith('The total is: 10')).to.be.true;
+    stub.restore();
+    spy.restore();
   });
 });
