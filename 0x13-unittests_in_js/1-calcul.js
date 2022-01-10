@@ -17,11 +17,11 @@ function calculateNumber(type, a, b) {
   } else if (type === 'DIVIDE') {
 
     if (b === 0) {
-      return ('Error');
+      return 'Error';
     }
     return (aprime / bprime);
   } else {
-    return ('Error')
+    return 'Error';
   }
 }
 
