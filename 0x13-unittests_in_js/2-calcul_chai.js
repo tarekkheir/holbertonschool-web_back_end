@@ -16,7 +16,7 @@ function calculateNumber(type, a, b) {
     return (aprime - bprime);
   } else if (type === 'DIVIDE') {
 
-    if (b === 0) {
+    if (bprime === 0) {
       return ('Error');
     }
     return (aprime / bprime);
